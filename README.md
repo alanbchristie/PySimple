@@ -16,11 +16,11 @@ Build and tag the image...
 
 And run it (in detached/non-blocking mode)...
 
-    $ docker run -d -p 4000:80 friendlyhello
+    $ docker run -d -p 4000:8080 friendlyhello
     <container ID>
 
 This will star the image as a container and map host port `4000` into the
-container, appearing on port `80` internally. This port re-mapping
+container, appearing on port `8080` internally. This port re-mapping
 is an essential part of the Docker ecosystem. The _long-and-short_ of all
 of this is that you should now be able to connect to the app at
 `http://localhost:4000`:
@@ -51,7 +51,7 @@ tag our image (with something useful like `2017.1`) and then push it.
 With the Docker image pushed we can now run the application on any
 Docker-enabled machine with the command:
 
-    $ docker run -d -p 4000:80 alanbchristie/pysimple:2017.1
+    $ docker run -d -p 4000:8080 alanbchristie/pysimple:2017.1
     Unable to find image 'alanbchristie/pysimple:2017.1' locally
     2017.1: Pulling from alanbchristie/pysimple
     [...]
