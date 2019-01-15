@@ -72,6 +72,6 @@ before installing a **PySimple** instance.
 ---
 
 _Alan B. Christie_  
-_January 2018_  
+_January 2019_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
