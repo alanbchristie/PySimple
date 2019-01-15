@@ -1,8 +1,9 @@
 version: '3'
 services:
-  web:
+  pysimple:
     build: .
+    image: alanbchristie/pysimple:latest
     ports:
-    - "5000:5000"
+    - 5000:5000
   redis:
-    image: "redis:alpine"
+    image: redis:alpine
