@@ -4,13 +4,15 @@ import os
 import socket
 
 # Connect to Redis
-redis = Redis(host="redis", port=6379,
+_SERVICE_NAME = os.environ.get('REDIS_SERVICE_NAME', 'redis')
+_PASSWORD = os.environ.get('REDIS_CONNECTION_PASSWORD', None)
+redis = Redis(host=_SERVICE_NAME, port=6379, password=_PASSWORD,
               db=0, socket_connect_timeout=2, socket_timeout=2)
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/hello")
 def hello():
     try:
         visits = redis.incr("counter")
@@ -29,4 +31,4 @@ if __name__ == "__main__":
     # If I enable `debug=True` I get
     # `KeyError: 'getpwuid(): uid not found: 1000060000'` errors
     # from OpenShift.
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', debug=True)

@@ -1,0 +1,96 @@
+# An OpenShift Template
+# Used as an experiment with the Template Service Broker
+
+# - iconClass   In OpenShift 3.7 iconClass can be set to: -
+#               built-in icons: https://rawgit.com/openshift/openshift-logos-icon/master/demo.html
+#               or Font Awesome 4.7: https://fontawesome.com/v4.7.0/icons/
+
+kind: Template
+apiVersion: v1
+metadata:
+  name: pysimple
+  annotations:
+    openshift.io/display-name: PySimple
+    openshift.io/provider-display-name: Alan Christie
+    openshift.io/documentation-url: https://github.com/alanbchristie/PySimple
+    openshift.io/support-url: https://github.com/alanbchristie/PySimple/issues
+    description: |-
+      A simple Python-based application that offers a Flask-driven URL
+      that just counts the number of visits, relying on a Redis backend.
+
+      Before installing this component you must have a Redis database
+      installed (which can be done from the catalogue) and a copy of the
+      connection password and service name you decided to use and PySimple
+      should be installed in the same project as your Redis database.
+    tags: pysimple
+    iconClass: icon-python
+
+labels:
+  app: pysimple
+
+# --- PARAMETERS --------------------------------------------------------------
+
+parameters:
+
+- name: DATABASE_SERVICE_NAME
+  description: >-
+    The Service Name you used for the Redis installation
+  value: redis
+
+- name: REDIS_CONNECTION_PASSWORD
+  description: >-
+    The Redis Connection Password you used when installing Redis
+  required: True
+
+# --- OBJECTS -----------------------------------------------------------------
+
+objects:
+
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: pysimple
+  spec:
+    replicas: 1
+    selector:
+      name: pysimple
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        labels:
+          name: pysimple
+      spec:
+        containers:
+        - image: alanbchristie/pysimple:latest
+          name: pysimple
+          env:
+          - name: REDIS_SERVICE_NAME
+            value: ${DATABASE_SERVICE_NAME}
+          - name: REDIS_CONNECTION_PASSWORD
+            value: ${REDIS_CONNECTION_PASSWORD}
+
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: pysimple
+  spec:
+    selector:
+      name: pysimple
+    ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: pysimple
+  spec:
+    path: /hello
+    to:
+      kind: Service
+      name: pysimple
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect

@@ -19,7 +19,7 @@ And run it (in detached/non-blocking mode)...
     $ docker run -d -p 4000:8080 friendlyhello
     <container ID>
 
-This will star the image as a container and map host port `4000` into the
+This will start the image as a container and map host port `4000` into the
 container, appearing on port `8080` internally. This port re-mapping
 is an essential part of the Docker ecosystem. The _long-and-short_ of all
 of this is that you should now be able to connect to the app at
@@ -56,9 +56,30 @@ Docker-enabled machine with the command:
     2017.1: Pulling from alanbchristie/pysimple
     [...]
 
+## Deploying to OpenShift
+The `openshift/templates` directory contains a `pysimple.yml` file
+that acts as a template for the application. You can install this
+in your OpenShift cluster to allow deployment using the *Catalogue*.
+
+If you've logged into your cluster you should be able to
+load the template definition into the `openshift` project like this: -
+
+    $ cd openshift/templates
+    $ oc create -f pysimple.yml -n openshift
+
+>   The template defines a **DeploymentConfig** for the Pod (Container),
+    a **Service** and a **Route**.
+
+With the template installed you should be able to select it using
+**Add to Project** where you'll find PySimple as an application.
+
+You will need toi install Redis into your chosen project
+(Redis should already be an available template application)
+before installing a **PySimple** instance.
+
 ---
 
 _Alan B. Christie_  
-_September 2017_  
+_January 2018_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
