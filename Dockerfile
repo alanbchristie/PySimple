@@ -1,20 +1,16 @@
-# Use an official Python runtime as a parent image
-FROM python:2.7.14-slim
+FROM python:3.7.3-slim
 
 # Set the working directory to /app
 WORKDIR /app
-
-# Copy the current directory contents into the container at /app
+# Copy the current directory contents into /app
 ADD . /app
-
-# Install any needed packages specified in requirements.txt
-RUN pip install -r requirements.txt
-
-# Make port 8080 available to the world outside this container
+# Make port 8080 available to the world
 EXPOSE 8080
 
-# Define environment variable
-ENV NAME World
+RUN pip install -r requirements.txt
 
+# Run the application as the 'nobody' user -
+# a built-in linux user with the least permissions on the system
+USER nobody
 # Run app.py when the container launches
 CMD ["python", "app.py"]
