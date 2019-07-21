@@ -1,4 +1,5 @@
-FROM python:3.7.3-slim
+ARG from_image=python:3.7.4-alpine3.10
+FROM ${from_image}
 
 # Set the working directory to /app
 WORKDIR /app

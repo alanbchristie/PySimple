@@ -70,10 +70,18 @@ Docker-enabled machine and run it with the command:
     2019.1: Pulling from alanbchristie/pysimple
     [...]
 
+## Building form ARM (k3s)
+To build and push an image for the ARM processor (suitable for a Raspberry-Pi
+Kubernetes/k3s deployment): -
+
+    $ docker build --build-arg from_image=arm32v7/python:3.7.4-alpine3.10 \
+        -t alanbchristie/pysimple:arm32v7-latest .
+    $ docker push alanbchristie/pysimple:arm32v7-latest
+
 ---
 
 _Alan B. Christie_  
-_September 2017_  
+_July 2019_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
 [Python]: https://www.python.org
