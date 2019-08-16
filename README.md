@@ -1,4 +1,8 @@
 # PySimple
+
+![GitHub](https://img.shields.io/github/license/alanbchristie/pysimple)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/alanbchristie/pysimple)
+
 A very simple [Python] application. Using the material in Docker's
 [Get Started] guide this is a simple (classic) Python-based web-app
 that uses Flask and Redis. You don't have to understand any of this,
@@ -7,7 +11,7 @@ demonstrating Docker.
 
 You should be able to build and run the containerised app using
 any suitably equipped Docker host. I used a `Mac` and Docker
-community edition `v18.09.2`.
+community edition `v19.03.1`.
 
 ## Building
 Build and tag the image...
@@ -70,7 +74,7 @@ Docker-enabled machine and run it with the command:
     2019.1: Pulling from alanbchristie/pysimple
     [...]
 
-## Building form ARM (k3s)
+## Building for ARM (k3s)
 To build and push an image for the ARM processor (suitable for a Raspberry-Pi
 Kubernetes/k3s deployment): -
 
@@ -78,11 +82,19 @@ Kubernetes/k3s deployment): -
         -t alanbchristie/pysimple:arm32v7-latest .
     $ docker push alanbchristie/pysimple:arm32v7-latest
 
+## Related repositories
+The following related GitHub repositories might be of interest: -
+
+-   The PySimple Ansible Galaxy [Role]
+-   The PySimple Ansible [Operator]
+
 ---
 
 _Alan B. Christie_  
-_July 2019_  
+_August 2019_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
+[Operator]: https://github.com/alanbchristie/ansible-operator-PySimple
 [Python]: https://www.python.org
 [Redis]: https://redis.io
+[Role]: https://github.com/alanbchristie/ansible-role-PySimple
