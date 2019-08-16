@@ -4,6 +4,8 @@
 [![Build Status](https://travis-ci.org/alanbchristie/PySimple.svg?branch=master)](https://travis-ci.org/alanbchristie/PySimple)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/alanbchristie/pysimple)
 
+![Ansible Role](https://img.shields.io/ansible/role/42199)
+
 A very simple [Python] application. Using the material in Docker's
 [Get Started] guide this is a simple (classic) Python-based web-app
 that uses Flask and Redis. You don't have to understand any of this,
