@@ -6,11 +6,16 @@ services:
 
 env:
   global:
+  # Secure environment
+  #
   # Docker credentials
   # - DOCKER_USERNAME
   # - DOCKER_PASSWORD
   - secure: "CZL5sX9Dj1B01ncnquWzLQyju2l1gl3VV3u+ShNJOWj5TqCDEhHdsZddlxJbpUB/SHr6eplULgtBGGnSZ4Bj3wR9AFfYSZ1Y/qJ0H8ckKEAWlmfrj9/7XCDgSzrz+qzaVqAmq0P7QC97qmzLP4jSZKXTvpT+Q/PbK11CU1+dSapRCqkacTHyNN5oEf6mVrW/SoWmzUPBAbGKrH/cbpeBmiI9duPVbb6DolT7DIOe2AVlCjK9V54MeBtxlaAkyehLUO//+uuJg4ItL744FWPI8mfqPhaZH3+2QunEYBQ4GsaSoHQwuGk4m9zXGtXYWcsPbd3fR/VJhxb/6fZp6qWfa9Urb0i5YgqfisblSs7Hj1WASF79NIjCbeqkjDnnBCHAuAZ1ERslUDOdkjxmk2RxHWPwmVNunnRUE/fxwps9pYtBCMlBBZvJcSu9Z2mKC/Rp+CJzc+TJM8s6vrURbrTiQXyoEExfVv4gr/p3KgYQnWBYK4E/VOeONKqIcf6VdXUYo5mYzHTXrAc9JCd0dMeSwMNCPOAbDYjRBgXOMSiGtA0hWQ0k/YGPRd9U2wzDsBZ5T9MpsS3242PXKrTuVvV6ROryydKCmVJwj6dxNp6oYL8uZDgYfe0iYe/sbW/VVZOHGtmP/MLvICEdZM7t3Wf8rJ/ffOYu5dQnjx467wX6Saw="
   - secure: "VWLa0q9QqGoHq3YHo8fkoywg1xw31Kg6Cd+64tiXsrQNW3P13P37CP5GaZFBlYBX3q/gE2WtwYjeZ91GwwMxApR/W8ViPtyRdGDZgx9Jl2/0Xwu9RQNvtDM8XDwUJ4xxHZ9bFyqe6Ed629Txd7Ksw+Fj1n1hAzxXbv9sSyP4QZXlk2vVWM+l0DZz4pHp+GOZcFjpdUchVX4qDOFBOcUh4TJr5c5Y8g4w19Spy8TJeL2haorhu3FqOnPqSIUBRLHO1A+ImszYeu7+CSIlfDmBsyldG3r+2lXOjh8Bh8AbrSs9cNJ1ksGEgvNxThW2NteXEK87f8D0ZnyPbR17jw1wPwii8Qo47DsR0A+6SwZlHE2Anm3yJyBDw3/oFY3Jb2BT3KLd9rbfhJoG0sW1HiIJjxmOzUeuTD4G3L7iSG6RtqK7oG3T8qpXmFa9p843aqke0iKPXFxFSj9NIhz4XPI0wSNY21v2blUOE0DO7YnjygJ8WjFnKgArLpuSv6TC9EqoYNXLoUe/avgsb1AX0jwXO3DyqOzabJcl6C+cOYsuFG1Bh3vhpmjU5um0llOamoZJCKy7qkF1P1b2W9zcZwDhXn4ue5cIBbmFfsUnkZ9V+mzbeDahlTlHJx7zYXANedB+MJM8El7zoHFU0/HEQ3PpqUZ4sgvaUEm1pWEqs0kDGNY="
+  # Public environment
+  #
+  - DOCKER_IMAGE=pysimple
 
 stages:
   # Build stage
@@ -30,16 +35,16 @@ matrix:
   include:
   - stage: build
     script:
-    - docker build -t "$DOCKER_USERNAME"/pysimple .
+    - docker build -t "$DOCKER_USERNAME"/"$DOCKER_IMAGE" .
   - stage: publish
     name: Publish latest
     script:
-    - docker build -t "$DOCKER_USERNAME"/pysimple:latest .
-    - docker push "$DOCKER_USERNAME"/pysimple:latest
+    - docker build -t "$DOCKER_USERNAME"/"$DOCKER_IMAGE":latest .
+    - docker push "$DOCKER_USERNAME"/"$DOCKER_IMAGE":latest
     if: tag IS NOT present
   - stage: publish
     name: Publish tag
     script:
-    - docker build -t "$DOCKER_USERNAME"/pysimple:"$TRAVIS_TAG" .
-    - docker push "$DOCKER_USERNAME"/pysimple:"$TRAVIS_TAG"
+    - docker build -t "$DOCKER_USERNAME"/"$DOCKER_IMAGE":"$TRAVIS_TAG" .
+    - docker push "$DOCKER_USERNAME"/"$DOCKER_IMAGE":"$TRAVIS_TAG"
     if: tag IS present
