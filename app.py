@@ -2,10 +2,15 @@ from flask import Flask
 from redis import Redis, RedisError
 import os
 import socket
+import pickledb
 
 # Connect to Redis
 redis = Redis(host="redis", port=6379,
               db=0, socket_connect_timeout=2, socket_timeout=2)
+# ...or a local (file-based) Pickle DB
+pickle_db = pickledb.load('/data/pysimple.db', False)
+
+COUNTER_FIELD = 'counter'
 
 app = Flask(__name__)
 
@@ -13,9 +18,13 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     try:
-        visits = redis.incr("counter")
+        visits = redis.incr(COUNTER_FIELD)
     except RedisError:
-        visits = "<i>No Redis container, counter disabled</i>"
+        visits = pickle_db.get(COUNTER_FIELD)
+        if not visits:
+            visits = 0
+        visits += 1
+        pickle_db.set(COUNTER_FIELD, visits)
 
     html = "<h3>Hello {name}!</h3>" \
            "<b>Hostname:</b> {hostname}<br/>" \
