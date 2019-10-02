@@ -14,7 +14,7 @@ demonstrating Docker.
 
 You should be able to build and run the containerised app using
 any suitably equipped Docker host. I used a `Mac` and Docker
-community edition `v19.03.1`.
+community edition `v19.03.2`.
 
 ## Building
 Build and tag the image...
@@ -55,15 +55,15 @@ And stop and remove the containers with: -
      
 ## Deploying to Docker Hub
 Here, we'll deploy to the Docker hub. It's free and simple. We just need to
-tag our image (with something useful like `2019.1`) and then push it.
+tag our image (with something useful like `2019.3`) and then push it.
 
     $ docker login -u alanbchristie
     [...]
-    $ docker tag friendlyhello alanbchristie/pysimple:2019.1
-    $ docker push alanbchristie/pysimple:2019.1
+    $ docker tag friendlyhello alanbchristie/pysimple:2019.3
+    $ docker push alanbchristie/pysimple:2019.3
 
 >   Here my hub account is `alanbchristie` and the registry there
-    is `pysimple`. We're giving this image the tag `2019.1`.
+    is `pysimple`. We're giving this image the tag `2019.3`.
     
 >   Tags are handled very differently in Docker, it does not understand
     that `1` is better than `2` - they're just strings that happen to
@@ -72,9 +72,9 @@ tag our image (with something useful like `2019.1`) and then push it.
 With the Docker image pushed we can now _pull_ the application onto any
 Docker-enabled machine and run it with the command:
 
-    $ docker run -d -p 4000:8080 alanbchristie/pysimple:2019.1
-    Unable to find image 'alanbchristie/pysimple:2017.1' locally
-    2019.1: Pulling from alanbchristie/pysimple
+    $ docker run -d -p 4000:8080 alanbchristie/pysimple:2019.3
+    Unable to find image 'alanbchristie/pysimple:2017.3' locally
+    2019.3: Pulling from alanbchristie/pysimple
     [...]
 
 ## Building for ARM (k3s)
