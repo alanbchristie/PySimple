@@ -94,7 +94,7 @@ The following related GitHub repositories might be of interest: -
 ---
 
 _Alan B. Christie_  
-_August 2019_  
+_September 2019_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
 [Operator]: https://github.com/alanbchristie/ansible-operator-PySimple
