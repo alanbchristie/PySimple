@@ -44,9 +44,9 @@ def hello():
     # either via a Redis increment or via a pickle-db instance,
     # or just a memory resident value.
 
-    html = "<h3>Hello {name}!</h3>" \
-           "<b>Hostname:</b> {hostname}<br/>" \
-           "<b>Num visits:</b> {visits}"
+    html = "<h3>Hello {name}!</h3>\n" \
+           "Hostname: {hostname} <br/>\n" \
+           "Num visits: {visits}\n"
     return html.format(name=os.getenv("NAME", "world"),
                        hostname=socket.gethostname(), visits=visits)
 
