@@ -59,11 +59,11 @@ tag our image (with something useful like `2019.3`) and then push it.
 
     $ docker login -u alanbchristie
     [...]
-    $ docker tag friendlyhello alanbchristie/pysimple:2019.3
-    $ docker push alanbchristie/pysimple:2019.3
+    $ docker build -t alanbchristie/pysimple:2019.6 .
+    $ docker push alanbchristie/pysimple:2019.6
 
 >   Here my hub account is `alanbchristie` and the registry there
-    is `pysimple`. We're giving this image the tag `2019.3`.
+    is `pysimple`. We're giving this image the tag `2019.6`.
     
 >   Tags are handled very differently in Docker, it does not understand
     that `1` is better than `2` - they're just strings that happen to
@@ -72,8 +72,8 @@ tag our image (with something useful like `2019.3`) and then push it.
 With the Docker image pushed we can now _pull_ the application onto any
 Docker-enabled machine and run it with the command:
 
-    $ docker run -d -p 4000:8080 alanbchristie/pysimple:2019.3
-    Unable to find image 'alanbchristie/pysimple:2017.3' locally
+    $ docker run -d -p 4000:8080 alanbchristie/pysimple:2019.6
+    Unable to find image 'alanbchristie/pysimple:2017.6' locally
     2019.3: Pulling from alanbchristie/pysimple
     [...]
 
@@ -94,7 +94,7 @@ The following related GitHub repositories might be of interest: -
 ---
 
 _Alan B. Christie_  
-_September 2019_  
+_November 2019_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
 [Operator]: https://github.com/alanbchristie/ansible-operator-PySimple

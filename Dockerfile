@@ -1,5 +1,9 @@
-ARG from_image=python:3.7.4-alpine3.10
+ARG from_image=python:3.8.0-alpine3.10
 FROM ${from_image}
+
+# Force the binary layer of the stdout and stderr streams
+# to be unbuffered
+ENV PYTHONUNBUFFERED 1
 
 # Create a /data directory
 WORKDIR /data
