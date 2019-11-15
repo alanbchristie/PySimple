@@ -14,7 +14,10 @@ ADD . /app
 # Make port 8080 available to the world
 EXPOSE 8080
 
-RUN pip install -r requirements.txt
+# Install requirements
+# and change file ownership
+RUN pip install -r requirements.txt && \
+    chown -R nobody.nobody /app
 
 # Run the application as the 'nobody' user -
 # a built-in linux user with the least permissions on the system
