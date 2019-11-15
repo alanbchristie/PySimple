@@ -16,11 +16,7 @@ EXPOSE 8080
 
 # Install requirements
 # and change file ownership
-RUN pip install -r requirements.txt && \
-    chown -R nobody.nobody /app
+RUN pip install -r requirements.txt
 
-# Run the application as the 'nobody' user -
-# a built-in linux user with the least permissions on the system
-USER nobody
 # Run app.py when the container launches
 CMD ["python", "app.py"]
