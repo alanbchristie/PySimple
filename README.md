@@ -1,7 +1,6 @@
 # PySimple
 
 ![GitHub](https://img.shields.io/github/license/alanbchristie/pysimple)
-[![Build Status](https://travis-ci.org/alanbchristie/PySimple.svg?branch=master)](https://travis-ci.org/alanbchristie/PySimple)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/alanbchristie/pysimple)
 
 ![Ansible Role](https://img.shields.io/ansible/role/42199)
