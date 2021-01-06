@@ -5,6 +5,8 @@
 
 ![Ansible Role](https://img.shields.io/ansible/role/42199)
 
+![Build and push latest image](https://github.com/alanbchristie/PySimple/workflows/Build%20and%20push%20latest%20image/badge.svg?branch=master)
+
 A very simple [Python] application. Using the material in Docker's
 [Get Started] guide this is a simple (classic) Python-based web-app
 that uses Flask and Redis. You don't have to understand any of this,
