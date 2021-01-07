@@ -16,7 +16,7 @@ demonstrating Docker.
 
 You should be able to build and run the containerised app using
 any suitably equipped Docker host. I used a `Mac` and Docker
-community edition `v19.03.2`.
+community edition `v20.10.0`.
 
 ## Building
 Build and tag the image...
@@ -57,14 +57,14 @@ And stop and remove the containers with: -
      
 ## Deploying to Docker Hub
 Here, we'll deploy to the Docker hub. It's free and simple. We just need to
-tag our image (with something useful like `2019.3`) and then push it.
+tag our image and then push it.
 
     $ docker login -u alanbchristie
     [...]
     $ docker build -t alanbchristie/pysimple:2019.6 .
     $ docker push alanbchristie/pysimple:2019.6
 
->   Here my hub account is `alanbchristie` and the registry there
+>   Here my Docker account is `alanbchristie` and the repository there
     is `pysimple`. We're giving this image the tag `2019.6`.
     
 >   Tags are handled very differently in Docker, it does not understand
@@ -96,7 +96,7 @@ The following related GitHub repositories might be of interest: -
 ---
 
 _Alan B. Christie_  
-_November 2019_  
+_January 2020_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
 [Operator]: https://github.com/alanbchristie/ansible-operator-PySimple
