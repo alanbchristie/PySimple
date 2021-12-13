@@ -15,8 +15,7 @@ the goal of this project is simply to provide a stable base for
 demonstrating Docker.
 
 You should be able to build and run the containerised app using
-any suitably equipped Docker host. I used a `Mac` and Docker
-community edition `v20.10.0`.
+any suitably equipped Docker host. I used a `Mac` and Docker `20.10.11`.
 
 ## Building
 Build and tag the image...
@@ -41,9 +40,10 @@ Now stop your container and remove the stopped container using its ID:
     $ docker rm <container ID>
 
 You can also use `docker-compose` and the built-in `docker-compose.yml`
-configuration file to spin-up more than one container. In our compose
-file also start a [Redis] container, a simple database that the app will
-use (if it can) to count the number of visits made to its port.
+configuration file to build and launch more than one container. In our compose
+file we start the PySimple container but also start a [Redis] container,
+a simple database that the app will use (if it can) to count the number of
+visits made to its port.
 
     $ docker-compose build
     $ docker-compose up --detach
@@ -72,7 +72,7 @@ tag our image and then push it.
     also be numbers.
 
 With the Docker image pushed we can now _pull_ the application onto any
-Docker-enabled machine and run it with the command:
+Docker-enabled machine and run it with the command: -
 
     $ docker run -d -p 4000:8080 alanbchristie/pysimple:2019.6
     Unable to find image 'alanbchristie/pysimple:2017.6' locally
@@ -83,7 +83,7 @@ Docker-enabled machine and run it with the command:
 To build and push an image for the ARM processor (suitable for a Raspberry-Pi
 Kubernetes/k3s deployment): -
 
-    $ docker build --build-arg from_image=arm32v7/python:3.7.4-alpine3.10 \
+    $ docker build --build-arg from_image=arm32v7/python:3.10.1-alpine3.14 \
         -t alanbchristie/pysimple:arm32v7-latest .
     $ docker push alanbchristie/pysimple:arm32v7-latest
 
@@ -96,7 +96,7 @@ The following related GitHub repositories might be of interest: -
 ---
 
 _Alan B. Christie_  
-_January 2020_  
+_December 2021_  
 
 [Get Started]: https://docs.docker.com/get-started/part2/
 [Operator]: https://github.com/alanbchristie/ansible-operator-PySimple

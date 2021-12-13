@@ -1,4 +1,4 @@
-ARG from_image=python:3.8.0-alpine3.10
+ARG from_image=python:3.10.1-alpine3.15
 FROM ${from_image}
 
 # Force the binary layer of the stdout and stderr streams
