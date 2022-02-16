@@ -1,8 +1,12 @@
-from flask import Flask
-from redis import Redis, RedisError
+"""A very simple Python web application,
+mainly to demonstrate container deployment.
+"""
 import os
 import socket
 import pickledb
+
+from flask import Flask
+from redis import Redis
 
 # Connect to Redis
 redis = Redis(host="redis", port=6379,
@@ -17,15 +21,19 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
+    """The main/only HTTP request handler.
+    """
     # Try to use Redis
     # and then fall-back to a pickle database...
     try:
         visits = redis.incr(COUNTER_FIELD)
+        print('Using redis [ok]')
     except Exception as r_ex:
         print('WARNING: redis.incr(%s) returned %s' %
               (COUNTER_FIELD, r_ex))
         try:
             visits = pickle_db.get(COUNTER_FIELD)
+            print('Using pickledb [ok]')
         except Exception as p_ex:
             print('WARNING: pickle_db.get(%s) returned %s' %
                   (COUNTER_FIELD, p_ex))
@@ -52,8 +60,4 @@ def hello():
 
 
 if __name__ == "__main__":
-
-    # If I enable `debug=True` I get
-    # `KeyError: 'getpwuid(): uid not found: 1000060000'` errors
-    # from OpenShift.
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8080, debug=False)

@@ -1,5 +1,7 @@
-ARG from_image=python:3.8.0-alpine3.10
-FROM ${from_image}
+ARG from_image=python:3.10.2-alpine3.15
+FROM ${from_image} AS build
+
+RUN apk update expat
 
 # Force the binary layer of the stdout and stderr streams
 # to be unbuffered
@@ -11,12 +13,15 @@ WORKDIR /data
 WORKDIR /app
 # Copy the current directory contents into /app
 ADD . /app
-# Make port 8080 available to the world
-EXPOSE 8080
 
 # Install requirements
 # and change file ownership
 RUN pip install -r requirements.txt
+# Expose the application's port
+EXPOSE 8080
 
-# Run app.py when the container launches
+FROM build AS development
+CMD ["tail", "-f", "/dev/null"]
+
+FROM build
 CMD ["python", "app.py"]

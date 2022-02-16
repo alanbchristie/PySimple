@@ -1,8 +1,15 @@
-version: '3'
+---
+version: '3.8'
 services:
-  web:
-    build: .
+  pysimple:
+    build:
+      context: '.'
+    image: alanbchristie/pysimple:latest
+    container_name: pysimple
     ports:
-     - "8080:8080"
+    - '8080:8080'
   redis:
-    image: "redis:alpine"
+    image: 'redis:alpine'
+    container_name: redis
+    ports:
+    - '6379:6379'
