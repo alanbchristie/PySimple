@@ -1,5 +1,5 @@
-ARG from_image=python:3.10.2-alpine3.15
-FROM ${from_image} AS build
+ARG from_image=python:3.10.1-alpine3.15
+FROM ${from_image}
 
 RUN apk update expat
 
