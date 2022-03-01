@@ -98,6 +98,8 @@ The following related GitHub repositories might be of interest: -
 _Alan B. Christie_  
 _December 2021_  
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/alanbchristie)
+
 [Get Started]: https://docs.docker.com/get-started/part2/
 [Operator]: https://github.com/alanbchristie/ansible-operator-PySimple
 [Python]: https://www.python.org
